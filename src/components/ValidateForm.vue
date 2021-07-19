@@ -15,7 +15,7 @@ import { defineComponent, onUnmounted  } from  'vue'
 import mitt from 'mitt'
 type ValidateFunc = () => boolean
 type Events = {
-  'form-item-created': ValidateFunc
+  'form-item-created': string
 }
 export const emitter = mitt<Events>()
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
     const  submitForm = () => {
       context.emit('form-submit', true)
     }
-    const callback = (test ?: string) => {
+    const callback = (test: string) => {
       console.log(test)
     }
     emitter.on('form-item-created', callback)
